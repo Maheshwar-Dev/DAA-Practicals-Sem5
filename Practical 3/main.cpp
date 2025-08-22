@@ -1,27 +1,24 @@
 class Solution {
-public:
-    vector<int> postorderTraversal(TreeNode* root) {
-        vector<int> data;
-        if (root == nullptr) return data;
-
-        stack<TreeNode*> myStack;
-        stack<TreeNode*> out;
-        myStack.push(root);
-
-        while (!myStack.empty()) {
-            TreeNode* curr = myStack.top();
-            myStack.pop();
-            out.push(curr);
-
-            if (curr->left) myStack.push(curr->left);
-            if (curr->right) myStack.push(curr->right);
-        }
-
-        while (!out.empty()) {
-            data.push_back(out.top()->val);
-            out.pop();
-        }
-
-        return data;
+  public:
+    vector<vector<int>> countFreq(vector<int>& arr) {
+       std::unordered_map<int, int> freq;
+       
+       for(int i : arr)
+       {
+           freq[i] += 1;
+       }
+       
+       vector<vector<int>> res(freq.size());
+       
+       int i = 0;
+       
+       for(auto it = freq.begin(); it != freq.end(); ++it){
+           res[i].push_back(it->first);
+           res[i].push_back(it->second);
+           i++;
+       }
+       
+       return res;
+        
     }
 };
