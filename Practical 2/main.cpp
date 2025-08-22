@@ -1,21 +1,20 @@
 class Solution {
 public:
-    vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> data;
-        if (root == nullptr) return data;
-
-        stack<TreeNode*> myStack;
-        myStack.push(root);
-
-        while (!myStack.empty()) {
-            TreeNode* curr = myStack.top();
-            myStack.pop();
-            data.push_back(curr->val);
-
-            if (curr->right) myStack.push(curr->right);
-            if (curr->left) myStack.push(curr->left);
+    double myPow(double x, int n) {
+       long long int exp = n;         
+        if (exp < 0) {
+            x = 1.0 / x;
+            exp = -exp;
         }
 
-        return data;
+        double res = 1.0;
+        while (exp > 0) {
+            if (exp & 1) {          
+                res *= x;
+            }
+            x *= x;                
+            exp >>= 1;            
+        }
+        return res;
     }
 };
